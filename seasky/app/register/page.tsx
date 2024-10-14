@@ -81,6 +81,9 @@ const Register = () => {
           </div>
           <button type="submit">Sign up</button>
         </form>
+        <p className={styles.registerPrompt}>
+          Already registered? <a href="/login" className={styles.link}>log in</a>
+        </p>
       </div>
     </div>
   );
