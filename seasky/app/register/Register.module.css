@@ -1,0 +1,71 @@
+.container {
+    background-image: url('/Small-Islands-Header-Image-Web.jpg'); /* Ensure this is the correct path relative to your Next.js public folder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensures the background stays in place when scrolling */
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    position: relative;
+  }
+  
+  .loginBox {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 400px;
+    z-index: 1; /* Ensures the login box stays on top of the background */
+  }
+  
+  .loginBox h1 {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .inputGroup {
+    margin-bottom: 20px;
+  }
+  
+  .inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  
+  .inputGroup input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .loginBox button {
+    width: 100%;
+    padding: 5px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .loginBox button:hover {
+    background-color: #005bb5;
+  }
+  
+  .registerPrompt {
+    margin-top: 20px;
+    font-size: x-small;
+  }
+
+  .link { 
+    color: #0070f3;
+  }

@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle login logic here
-    console.log('Username:', username);
+    console.log('Email:', email);
     console.log('Password:', password);
   };
 
@@ -19,12 +19,12 @@ const Login = () => {
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email ID</label>
             <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -40,6 +40,9 @@ const Login = () => {
           </div>
           <button type="submit">Login</button>
         </form>
+        <p className={styles.registerPrompt}>
+          Haven't registered? <a href="/register" className={styles.link}>Register now</a>
+        </p>
       </div>
     </div>
   );
