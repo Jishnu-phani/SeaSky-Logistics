@@ -1,12 +1,10 @@
-import { Pool } from 'pg';
+import mysql from 'mysql2/promise';
 
-// Create a connection pool
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',  // Or your database server
+const pool = mysql.createPool({
+  host: 'localhost',  // or your database host
+  user: 'root',
+  password: '87654321',
   database: 'Seasky_Logistics',
-  password: 'your_db_password',
-  port: 5432,         // Default PostgreSQL port
 });
 
-export const query = (text: string, params?: any[]) => pool.query(text, params);
+export default pool;
