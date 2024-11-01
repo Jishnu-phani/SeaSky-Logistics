@@ -1,3 +1,4 @@
+// /app/register/page.tsx
 'use client';
 import React, { useState } from 'react';
 import styles from './Register.module.css';
@@ -8,20 +9,25 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [contact, setContact] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder for handling the form submission
-    handleRegister();
-  };
 
-  const handleRegister = () => {
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Email:', email);
-    console.log('Contact:', contact);
-    console.log('Password:', password);
-    // Add registration logic here (e.g., API call to register user)
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ firstName, lastName, email, contact, password }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      // Redirect to login page on successful registration
+      window.location.href = '/home';
+    } else {
+      // Display error message from the response
+      setError(data.error || 'Registration failed. Please try again.');
+    }
   };
 
   return (
@@ -79,10 +85,11 @@ const Register = () => {
               required
             />
           </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit">Sign up</button>
         </form>
         <p className={styles.registerPrompt}>
-          Already registered? <a href="/login" className={styles.link}>log in</a>
+          Already registered? <a href="/login" className={styles.link}>Log in</a>
         </p>
       </div>
     </div>

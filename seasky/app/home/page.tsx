@@ -21,7 +21,7 @@ export default function TravelBooking() {
       description: 'Find your preferred reliable delivery partner to get your goods to their destination',
       buttonText: 'Book Shipment',
       image: '/Small-Islands-Header-Image-Web.jpg',
-      route: '/shipments', // Define the route for shipments
+      route: '/parcel', // Define the route for shipments
     },
   ];
 

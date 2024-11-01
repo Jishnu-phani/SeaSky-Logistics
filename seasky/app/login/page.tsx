@@ -1,3 +1,4 @@
+// /app/login/page.tsx
 'use client';
 import React, { useState } from 'react';
 import styles from './Login.module.css';
@@ -5,12 +6,25 @@ import styles from './Login.module.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      // Store token (e.g., in local storage) and redirect
+      localStorage.setItem('token', data.token);
+      window.location.href = '/home';
+    } else {
+      setError(data.message);
+    }
   };
 
   return (
@@ -38,6 +52,7 @@ const Login = () => {
               required
             />
           </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit">Login</button>
         </form>
         <p className={styles.registerPrompt}>
