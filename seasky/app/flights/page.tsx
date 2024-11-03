@@ -45,18 +45,6 @@ const BookingPage = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="passengers">Number of Passengers:</label>
-          <input
-            type="number"
-            id="passengers"
-            value={passengers}
-            onChange={(e) => setPassengers(Number(e.target.value))}
-            min="1"
-            required
-          />
-        </div>
-
-        <div className={styles.formGroup}>
           <label htmlFor="travelDate">Travel Date:</label>
           <input
             type="date"
