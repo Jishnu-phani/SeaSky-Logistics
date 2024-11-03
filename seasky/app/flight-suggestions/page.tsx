@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
-import styles from './flight.module.css'; // Import CSS module for styles
+import styles from './flight.module.css';
 
 type Suggestion = {
   id: number;
@@ -17,12 +18,13 @@ const FlightSuggestions = () => {
   const travelDate = searchParams.get('travelDate');
   const [passportNumber, setPassportNumber] = useState('');
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const router = useRouter();
 
   const generateRandomPrice = (): string => {
-    return (Math.random() * 500 + 100).toFixed(2); // Generate random price between 100 and 600
+    return (Math.random() * 500 + 100).toFixed(2);
   };
 
-  const flights = ["Indigo", "AirIndia",  "SpiceJet", "Vistara", "GoAir", "AirAsia", "AirIndiaExpress"];
+  const flights = ["Indigo", "AirIndia", "SpiceJet", "Vistara", "GoAir", "AirAsia", "AirIndiaExpress"];
   const randomFlight = flights[Math.floor(Math.random() * flights.length)];
 
   useEffect(() => {
@@ -34,13 +36,38 @@ const FlightSuggestions = () => {
     setSuggestions(initialSuggestions);
   }, []);
 
-  const handleSelect = (id: number) => {
+  const handleSelect = async (id: number) => {
     if (!passportNumber) {
       alert('Please enter your passport number.');
       return;
     }
-    // Handle ticket selection logic here
-    console.log(`Selected flight ${id} with passport number ${passportNumber}`);
+
+    try {
+      const response = await fetch('/api/auth/bookFlight', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          passportNumber,
+          userId: null,  // Update with logged-in user ID if available
+          fromCity,
+          toCity,
+          travelDate,
+        }),
+      });
+
+      if (response.ok) {
+        alert('Booked successfully');
+        router.push('/home');
+      } else {
+        const data = await response.json();
+        alert(data.message || 'Booking failed');
+      }
+    } catch (error) {
+      console.error("Error booking flight:", error);
+      alert("An error occurred while booking. Please try again.");
+    }
   };
 
   return (
@@ -49,7 +76,7 @@ const FlightSuggestions = () => {
       <div className={styles.suggestions}>
         {suggestions.map((suggestion) => (
           <div key={suggestion.id} className={styles.card}>
-            <h2>{flights[Math.floor(Math.random() * flights.length)]}</h2>
+            <h2>{randomFlight}</h2>
             <p>From: {fromCity}</p>
             <p>To: {toCity}</p>
             <p>Date: {travelDate}</p>
