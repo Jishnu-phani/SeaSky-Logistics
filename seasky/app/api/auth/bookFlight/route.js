@@ -1,4 +1,4 @@
-import db from '../db'; // Adjust the path if necessary
+import db from '../db';
 import { nanoid } from 'nanoid';
 
 export async function POST(req) {

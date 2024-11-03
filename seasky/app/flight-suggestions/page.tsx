@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
@@ -8,6 +7,7 @@ import styles from './flight.module.css';
 type Suggestion = {
   id: number;
   price: string;
+  airline: string;
 };
 
 const FlightSuggestions = () => {
@@ -24,14 +24,16 @@ const FlightSuggestions = () => {
     return (Math.random() * 500 + 100).toFixed(2);
   };
 
-  const flights = ["Indigo", "AirIndia", "SpiceJet", "Vistara", "GoAir", "AirAsia", "AirIndiaExpress"];
-  const randomFlight = flights[Math.floor(Math.random() * flights.length)];
+  const getRandomFlight = (): string => {
+    const flights = ["Indigo", "AirIndia", "SpiceJet", "Vistara", "GoAir", "AirAsia", "AirIndiaExpress"];
+    return flights[Math.floor(Math.random() * flights.length)];
+  };
 
   useEffect(() => {
     const initialSuggestions: Suggestion[] = [
-      { id: 1, price: generateRandomPrice() },
-      { id: 2, price: generateRandomPrice() },
-      { id: 3, price: generateRandomPrice() },
+      { id: 1, price: generateRandomPrice(), airline: getRandomFlight() },
+      { id: 2, price: generateRandomPrice(), airline: getRandomFlight() },
+      { id: 3, price: generateRandomPrice(), airline: getRandomFlight() },
     ];
     setSuggestions(initialSuggestions);
   }, []);
@@ -50,7 +52,7 @@ const FlightSuggestions = () => {
         },
         body: JSON.stringify({
           passportNumber,
-          userId: null,  // Update with logged-in user ID if available
+          userId: null, // Update with logged-in user ID if available
           fromCity,
           toCity,
           travelDate,
@@ -76,7 +78,7 @@ const FlightSuggestions = () => {
       <div className={styles.suggestions}>
         {suggestions.map((suggestion) => (
           <div key={suggestion.id} className={styles.card}>
-            <h2>{randomFlight}</h2>
+            <h2>{suggestion.airline}</h2>
             <p>From: {fromCity}</p>
             <p>To: {toCity}</p>
             <p>Date: {travelDate}</p>

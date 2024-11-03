@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './parcel.module.css'; // Import CSS module for styles
 
 const ParcelPage = () => {
@@ -21,11 +22,11 @@ const ParcelPage = () => {
   const [isFragile, setIsFragile] = useState(false);
   const [description, setDescription] = useState('');
   const [shippingDate, setShippingDate] = useState('');
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., API calls)
-    console.log({ senderAddress, receiverAddress, weight, volume, isFragile, description, shippingDate });
+    router.push(`/parcel-suggestions?senderStreet=${senderAddress.street}&senderCity=${senderAddress.city}&senderState=${senderAddress.state}&senderCountry=${senderAddress.country}&receiverStreet=${receiverAddress.street}&receiverCity=${receiverAddress.city}&receiverState=${receiverAddress.state}&receiverCountry=${receiverAddress.country}&weight=${weight}&volume=${volume}&isFragile=${isFragile}&shippingDate=${shippingDate}&description=${description}`);
   };
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'sender' | 'receiver') => {
