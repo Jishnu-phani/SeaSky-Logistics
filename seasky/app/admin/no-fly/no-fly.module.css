@@ -1,0 +1,107 @@
+.container {
+    background-image: url('/Admin_login.jpg'); /* Ensure this is the correct path relative to your Next.js public folder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensures the background stays in place when scrolling */
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .header {
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: #000;
+    text-align: center;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  .section {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 40%; /* Reduced width */
+    z-index: 1; /* Ensures the section stays on top of the background */
+    margin: 10px;
+  }
+  
+  .section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inputGroup {
+    margin-bottom: 20px; /* Reduced margin */
+  }
+  
+  .inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .inputGroup input,
+  .inputGroup textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000; /* Set text color to black */
+  }
+  
+  .button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .button:hover {
+    background-color: #005bb5;
+  }
+  
+  .result {
+    margin-top: 20px;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 767px) {
+    .content {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .section {
+      width: 90%;
+    }
+  }
