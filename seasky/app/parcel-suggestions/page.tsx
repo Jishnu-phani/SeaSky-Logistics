@@ -21,6 +21,8 @@ const ParcelSuggestions = () => {
   const senderCity = searchParams.get('senderCity');
   const senderState = searchParams.get('senderState');
   const senderCountry = searchParams.get('senderCountry');
+  const receiverfName = searchParams.get('receiverfName');
+  const receiverlName = searchParams.get('receiverlName');
   const receiverStreet = searchParams.get('receiverStreet');
   const receiverCity = searchParams.get('receiverCity');
   const receiverState = searchParams.get('receiverState');
@@ -102,7 +104,9 @@ const ParcelSuggestions = () => {
             state: senderState,
             country: senderCountry
           },
-          receiverAddress: {
+          receiverDetails: {
+            firstName: receiverfName,
+            lastName: receiverlName,
             street: receiverStreet,
             city: receiverCity,
             state: receiverState,

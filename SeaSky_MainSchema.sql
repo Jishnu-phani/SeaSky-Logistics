@@ -1,8 +1,9 @@
--- DROP DATABASE IF EXISTS Seasky_Logistics;
--- CREATE DATABASE Seasky_Logistics;
+DROP DATABASE IF EXISTS Seasky_Logistics;
+CREATE DATABASE Seasky_Logistics;
+USE Seasky_Logistics;
 
-DROP TABLE IF EXISTS "User";
-CREATE TABLE "User" (
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users (
     User_ID CHAR(10) PRIMARY KEY,
     Password VARCHAR(100) NOT NULL,
     Contact_Number INT UNIQUE NOT NULL, 
@@ -15,7 +16,7 @@ DROP TABLE IF EXISTS User_Role;
 CREATE TABLE User_Role (
     User_ID CHAR(10),
     Role VARCHAR(50) NOT NULL DEFAULT 'User',
-    FOREIGN KEY (User_ID) REFERENCES "User"(User_ID)
+    FOREIGN KEY (User_ID) REFERENCES Users(User_ID)
 );
 
 DROP TABLE IF EXISTS Passenger;
@@ -23,7 +24,7 @@ CREATE TABLE Passenger (
     Passenger_ID CHAR(10) PRIMARY KEY,
     Passport_Number CHAR(12) UNIQUE NOT NULL,
     User_ID CHAR(10),
-    FOREIGN KEY (User_ID) REFERENCES "User"(User_ID)
+    FOREIGN KEY (User_ID) REFERENCES Users(User_ID)
 );
 
 DROP TABLE IF EXISTS No_Fly;
@@ -43,7 +44,7 @@ CREATE TABLE Sender (
     Country VARCHAR(100) NOT NULL,
     Company VARCHAR(100) NOT NULL,
     User_ID CHAR(10),
-    FOREIGN KEY (User_ID) REFERENCES "User"(User_ID)
+    FOREIGN KEY (User_ID) REFERENCES Users(User_ID)
 );
 
 DROP TABLE IF EXISTS Receiver;

@@ -12,10 +12,12 @@ const ParcelPage = () => {
     country: ''
   });
   const [receiverAddress, setReceiverAddress] = useState({
+    fName: '',
+    lName: '',
     street: '',
     city: '',
     state: '',
-    country: ''
+    country: '',
   });
   const [weight, setWeight] = useState('');
   const [volume, setVolume] = useState('');
@@ -26,7 +28,7 @@ const ParcelPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/parcel-suggestions?senderStreet=${senderAddress.street}&senderCity=${senderAddress.city}&senderState=${senderAddress.state}&senderCountry=${senderAddress.country}&receiverStreet=${receiverAddress.street}&receiverCity=${receiverAddress.city}&receiverState=${receiverAddress.state}&receiverCountry=${receiverAddress.country}&weight=${weight}&volume=${volume}&isFragile=${isFragile}&shippingDate=${shippingDate}&description=${description}`);
+    router.push(`/parcel-suggestions?senderStreet=${senderAddress.street}&senderCity=${senderAddress.city}&senderState=${senderAddress.state}&senderCountry=${senderAddress.country}&receiverfName=${receiverAddress.fName}&receiverlName=${receiverAddress.lName}&receiverStreet=${receiverAddress.street}&receiverCity=${receiverAddress.city}&receiverState=${receiverAddress.state}&receiverCountry=${receiverAddress.country}&weight=${weight}&volume=${volume}&isFragile=${isFragile}&shippingDate=${shippingDate}&description=${description}`);
   };
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'sender' | 'receiver') => {
@@ -156,7 +158,29 @@ const ParcelPage = () => {
         </div>
         
         <div className={styles.column}>
-          <h2>Receiver Address</h2>
+          <h2>Receiver Details</h2>
+          <div className={styles.formGroup}>
+            <label htmlFor="receiverStreet">First Name:</label>
+            <input
+              type="text"
+              id="fName"
+              name="fName"
+              value={receiverAddress.fName}
+              onChange={(e) => handleAddressChange(e, 'receiver')}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="receiverStreet">Last Name:</label>
+            <input
+              type="text"
+              id="lName"
+              name="lName"
+              value={receiverAddress.lName}
+              onChange={(e) => handleAddressChange(e, 'receiver')}
+              required
+            />
+          </div>
           <div className={styles.formGroup}>
             <label htmlFor="receiverStreet">Street:</label>
             <input

@@ -6,7 +6,7 @@ export async function POST(req) {
         const {
             trackingNumber,
             senderAddress,
-            receiverAddress,
+            receiverDetails,
             weight,
             volume,
             isFragile,
@@ -40,12 +40,12 @@ export async function POST(req) {
             'INSERT INTO Receiver (Receiver_ID, First_Name, Last_Name, Street, City, State, Country) VALUES (?, ?, ?, ?, ?, ?, ?)',
             [
                 receiverId,
-                'John', 
-                'Doe',       
-                receiverAddress.street,
-                receiverAddress.city,
-                receiverAddress.state,
-                receiverAddress.country
+                receiverDetails.firstName,
+                receiverDetails.lastName,      
+                receiverDetails.street,
+                receiverDetails.city,
+                receiverDetails.state,
+                receiverDetails.country
             ]
         );
 
@@ -86,7 +86,7 @@ export async function POST(req) {
                 logId,
                 'In Transit',
                 `${senderAddress.city}, ${senderAddress.country}`,
-                `${receiverAddress.city}, ${receiverAddress.country}`,
+                `${receiverDetails.city}, ${receiverDetails.country}`,
                 formattedShippingDate,
                 'Flight',
                 formattedEndTime,
