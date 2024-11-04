@@ -8,7 +8,7 @@ export async function POST(req) {
     const { email, password } = await req.json(); // Get the request body
 
     // Query the database to find the user by email
-    const [results] = await db.query('SELECT * FROM User WHERE Email = ?', [email]);
+    const [results] = await db.query('SELECT * FROM Users WHERE Email = ?', [email]);
 
     // Check if the user exists
     if (results.length === 0) {

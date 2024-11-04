@@ -8,7 +8,7 @@ export async function POST(request) {
     const { firstName, lastName, email, contact, password } = await request.json();
 
     // Check if the user already exists
-    const [existingUser] = await db.query('SELECT * FROM User WHERE Email = ?', [email]);
+    const [existingUser] = await db.query('SELECT * FROM Users WHERE Email = ?', [email]);
 
     if (existingUser.length > 0) {
       return new Response(JSON.stringify({ error: 'User already exists' }), { status: 400 });
@@ -22,7 +22,7 @@ export async function POST(request) {
 
     // Insert into the User table
     const query = `
-      INSERT INTO User (User_ID, Password, Contact_Number, First_Name, Last_Name, Email)
+      INSERT INTO Users (User_ID, Password, Contact_Number, First_Name, Last_Name, Email)
       VALUES (?, ?, ?, ?, ?, ?)
     `;
     const values = [userId, hashedPassword, contact, firstName, lastName, email];
