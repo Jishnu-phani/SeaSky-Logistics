@@ -105,3 +105,25 @@
       width: 90%;
     }
   }
+
+  .backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  z-index: 2;
+}
+
+.backButton:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}

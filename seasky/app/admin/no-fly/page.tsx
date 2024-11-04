@@ -2,7 +2,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './no-fly.module.css';
+import Image from 'next/image';
 
 type NoFlyEntry = {
   passportNumber: string;
@@ -16,6 +18,7 @@ export default function NoFlyPage() {
   const [reason, setReason] = useState('');
   const [searchResult, setSearchResult] = useState<NoFlyEntry | null>(null);
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +69,17 @@ export default function NoFlyPage() {
 
   return (
     <div className={styles.container}>
+      <div 
+        className={styles.backButton}
+        onClick={() => router.push('/admin/home')}
+      >
+        <Image
+          src="/back-arrow.svg"
+          alt="Back to Admin Home"
+          width={24}
+          height={24}
+        />
+      </div>
       <h1>No-Fly List Management</h1>
       
       {/* Search Form */}
