@@ -13,14 +13,14 @@ export default function TravelBooking() {
       title: 'Flights',
       description: 'Search Flights to our most popular destinations',
       buttonText: 'Show Flights',
-      image: '/Small-Islands-Header-Image-Web.jpg',
+      image: '/plane.jpg',
       route: '/flights', // Define the route for flights
     },
     {
       title: 'Shipments',
       description: 'Find your preferred reliable delivery partner to get your goods to their destination',
       buttonText: 'Book Shipment',
-      image: '/Small-Islands-Header-Image-Web.jpg',
+      image: '/parcel.jpg',
       route: '/parcel', // Define the route for shipments
     },
   ];

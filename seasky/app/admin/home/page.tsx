@@ -20,13 +20,13 @@ export default function AdminHome() {
         </button>
         <button 
           className={styles.button}
-          onClick={() => handleNavigation('/admin/flights')}
+          onClick={() => handleNavigation('/admin/booking-status-management')}
         >
           Booking Status Management
         </button>
         <button 
           className={styles.button}
-          onClick={() => handleNavigation('/admin/reports')}
+          onClick={() => handleNavigation('/admin/shipment-status')}
         >
           Shipment Status Management
         </button>
