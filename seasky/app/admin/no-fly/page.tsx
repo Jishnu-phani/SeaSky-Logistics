@@ -23,11 +23,24 @@ export default function NoFlyPage() {
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/admin/no-fly/search?passport=${searchPassportNumber}`);
+      const response = await fetch('/api/no-fly-search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          passportNumber: searchPassportNumber,
+        }),
+      });
+  
       const data = await response.json();
-      
+  
       if (response.ok) {
-        setSearchResult(data.result);
+        setSearchResult({
+          passportNumber: data.passportNumber,
+          reason: data.reason,
+          dateAdded: data.dateAdded,
+        });
         setError('');
       } else {
         setError(data.message);
@@ -37,7 +50,7 @@ export default function NoFlyPage() {
       setError('Failed to search no-fly list');
       setSearchResult(null);
     }
-  };
+  };  
 
   const handleAddToNoFly = async (e: React.FormEvent) => {
     e.preventDefault();
