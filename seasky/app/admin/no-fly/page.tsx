@@ -42,7 +42,7 @@ export default function NoFlyPage() {
   const handleAddToNoFly = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/admin/no-fly/add', {
+      const response = await fetch('/api/no-fly', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

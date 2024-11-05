@@ -10,6 +10,14 @@ export async function POST(req) {
 
         const formattedTravelDate = new Date(travelDate).toISOString().split('T')[0];
 
+        const [results] = await db.query('SELECT * FROM no_fly WHERE Passport_Number = ?', [passportNumber]);
+        if (results.length > 0) {
+            return new Response(JSON.stringify({ message: 'Passenger is in the no-fly list' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+
         await db.query(
             'INSERT INTO passenger (Passenger_ID, Passport_Number, User_ID) VALUES (?, ?, ?)',
             [passengerId, passportNumber, userId || null]
