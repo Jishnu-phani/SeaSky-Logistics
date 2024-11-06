@@ -1,5 +1,9 @@
 import db from '../db';
+import { NextResponse } from 'next/server';
+import jwt from 'jsonwebtoken';
 import { nanoid } from 'nanoid';
+
+const SECRET_KEY = 'your_secret_key';
 
 export async function POST(req) {
     try {
@@ -15,6 +19,22 @@ export async function POST(req) {
             shippingDate,
             selectedOption
         } = await req.json();
+
+        const authHeader = req.headers.get('authorization');
+        if (!authHeader) {
+            return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+        }
+
+        const token = authHeader.split(' ')[1];
+        let decoded;
+
+        try {
+            decoded = jwt.verify(token, SECRET_KEY);
+        } catch (error) {
+            return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+        }
+
+        const userId = decoded.id;
 
         const shipmentId = nanoid(10);
         const senderId = nanoid(10);
@@ -33,7 +53,7 @@ export async function POST(req) {
                 senderAddress.state,
                 senderAddress.country,
                 'Meta', 
-                null
+                userId
             ]
         );
 

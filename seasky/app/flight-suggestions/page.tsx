@@ -45,10 +45,12 @@ const FlightSuggestions = () => {
     }
 
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch('/api/auth/bookFlight', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           passportNumber,

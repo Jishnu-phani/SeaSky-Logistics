@@ -1,0 +1,71 @@
+/* PastBookings.module.css */
+
+.container {
+    background-image: url('/Small-Islands-Header-Image-Web.jpg'); /* Set your background image */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling if necessary */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    color: black;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table td[colspan] {
+    text-align: center;
+    font-style: italic;
+}
+
+.table th:nth-child(-n+2), .table td:nth-child(-n+2) {
+    width: 150px; /* Adjust column width */
+}
+
+.table th:nth-child(3), .table td:nth-child(3) {
+    width: 200px; /* Adjust column width */
+}
+
+.table th:nth-child(5), .table td:nth-child(5) {
+    width: 180px; /* Adjust column width */
+}

@@ -1,9 +1,29 @@
 import db from '../db';
+import { NextResponse } from 'next/server';
+import jwt from 'jsonwebtoken';
 import { nanoid } from 'nanoid';
+
+const SECRET_KEY = 'your_secret_key';
 
 export async function POST(req) {
     try {
-        const { passportNumber, userId, fromCity, toCity, travelDate } = await req.json();
+        const { passportNumber, fromCity, toCity, travelDate } = await req.json();
+
+        const authHeader = req.headers.get('authorization');
+        if (!authHeader) {
+            return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+        }
+
+        const token = authHeader.split(' ')[1];
+        let decoded;
+
+        try {
+            decoded = jwt.verify(token, SECRET_KEY);
+        } catch (error) {
+            return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+        }
+
+        const userId = decoded.id;
         const bookingId = nanoid(10);
         const passengerId = nanoid(10);
         const logId = nanoid(15);

@@ -1,7 +1,9 @@
-// app/api/auth/register/route.js
 import db from '../db'; // Adjust path if necessary
 import bcrypt from 'bcrypt';
 import { nanoid } from 'nanoid'; // Import nanoid
+import jwt from 'jsonwebtoken'; // Import JWT to generate token
+
+const SECRET_KEY = 'your_secret_key'; // Define your secret key for JWT
 
 export async function POST(request) {
   try {
@@ -35,7 +37,14 @@ export async function POST(request) {
       console.log('User registered successfully:', results);
     });
 
-    return new Response(JSON.stringify({ message: 'User registered successfully' }), { status: 200 });
+    // Create JWT token
+    const token = jwt.sign({ id: userId }, SECRET_KEY, { expiresIn: '1h' });
+
+    // Return the token and a success message
+    return new Response(
+      JSON.stringify({ message: 'User registered successfully', token }),
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });

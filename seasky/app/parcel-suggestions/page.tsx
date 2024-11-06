@@ -93,10 +93,12 @@ const ParcelSuggestions = () => {
   const handleSelect = async (id: number) => {
 
     try {
+      const token = localStorage.getItem('token'); 
       const response = await fetch('/api/auth/bookParcel', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           senderAddress: {

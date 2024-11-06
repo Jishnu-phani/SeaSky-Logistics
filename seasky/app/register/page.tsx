@@ -1,4 +1,3 @@
-// /app/register/page.tsx
 'use client';
 import React, { useState } from 'react';
 import styles from './Register.module.css';
@@ -22,7 +21,10 @@ const Register = () => {
 
     const data = await response.json();
     if (response.ok) {
-      // Redirect to login page on successful registration
+      // Store the JWT token in localStorage
+      localStorage.setItem('token', data.token);
+
+      // Redirect to homepage after successful registration
       window.location.href = '/home';
     } else {
       // Display error message from the response
