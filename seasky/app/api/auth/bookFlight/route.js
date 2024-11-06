@@ -8,7 +8,6 @@ const SECRET_KEY = 'your_secret_key';
 export async function POST(req) {
     try {
         const { passportNumber, fromCity, toCity, travelDate } = await req.json();
-
         const authHeader = req.headers.get('authorization');
         if (!authHeader) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -16,7 +15,6 @@ export async function POST(req) {
 
         const token = authHeader.split(' ')[1];
         let decoded;
-
         try {
             decoded = jwt.verify(token, SECRET_KEY);
         } catch (error) {
@@ -24,6 +22,7 @@ export async function POST(req) {
         }
 
         const userId = decoded.id;
+
         const bookingId = nanoid(10);
         const passengerId = nanoid(10);
         const logId = nanoid(15);
@@ -40,7 +39,7 @@ export async function POST(req) {
 
         await db.query(
             'INSERT INTO passenger (Passenger_ID, Passport_Number, User_ID) VALUES (?, ?, ?)',
-            [passengerId, passportNumber, userId || null]
+            [passengerId, passportNumber, userId]
         );
 
         await db.query(
