@@ -17,6 +17,7 @@ interface TravelLog {
     Start_time: string;
     Shipment_ID: string;
     Package_ID: string;
+    Category: string;
 }
 
 const TravelLogPage: React.FC = () => {
@@ -155,6 +156,7 @@ const TravelLogPage: React.FC = () => {
                         <th>Destination</th>
                         <th>Travel Date</th>
                         <th>Current Status</th>
+                        <th>Category</th>
                         <th>Verify</th>
                     </tr>
                 </thead>
@@ -168,6 +170,7 @@ const TravelLogPage: React.FC = () => {
                             <td className={styles.statusCell}>
                                 {log.Travel_Status}
                             </td>
+                            <td>{log.Category}</td>
                             <td>
                             <button
     onClick={() => handleVerify(log.Log_ID, log.Package_ID)}

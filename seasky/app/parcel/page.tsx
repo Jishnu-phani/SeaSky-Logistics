@@ -144,14 +144,30 @@ const ParcelPage = () => {
 
           <div className={styles.formGroup}>
             <label htmlFor="description">Category:</label>
-            <input
-              type="text"
-              id="category"
-              name="category"
+            <select
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            />
+                    onChange={(e) => setCategory(e.target.value)}
+                    className={styles.statusSelect}
+                >
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing & Apparel">Clothing & Appare</option>
+                    <option value="Food & Beverages">Food & Beverages</option>
+                    <option value="Chemicals & Hazardous Materials">Chemicals & Hazardous Materials</option>
+                    <option value="Automotive Parts">Automotive Parts</option>
+                    <option value="Medical Supplies & Equipment">Medical Supplies & Equipment</option>
+                    <option value="Textiles & Fabrics">Textiles & Fabrics</option>
+                    <option value="Toys & Games">Toys & Games</option>
+                    <option value="Books & Stationery">Books & Stationery</option>
+                    <option value="Precious Metals & Gems">Precious Metals & Gems</option>
+                    <option value="Live Animals">Live Animals</option>
+                    <option value="Plants & Agricultural Products">Plants & Agricultural Products</option>
+                    <option value="Pharmaceuticals">Pharmaceuticals</option>
+                    <option value="Machinery & Industrial Equipment">Machinery & Industrial Equipment</option>
+                    <option value="Artwork & Antiques">Artwork & Antiques</option>
+                    <option value="Sports Equipment">Sports Equipment</option>
+                    <option value="Construction Materials">Construction Materials</option>
+                    <option value="Cosmetics & Personal Care Products">Cosmetics & Personal Care Products</option>
+            </select>
           </div>
 
           <div className={styles.formGroup}>
