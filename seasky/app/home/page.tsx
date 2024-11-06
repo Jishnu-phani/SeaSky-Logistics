@@ -1,12 +1,11 @@
-// page.tsx
-'use client'; // Ensure this component is a Client Component
+'use client'; 
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Import useRouter from next/navigation
+import { useRouter } from 'next/navigation'; 
 import styles from './page.module.css';
 
 export default function TravelBooking() {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter(); 
 
   const sections = [
     {
@@ -14,14 +13,21 @@ export default function TravelBooking() {
       description: 'Search Flights to our most popular destinations',
       buttonText: 'Show Flights',
       image: '/plane.jpg',
-      route: '/flights', // Define the route for flights
+      route: '/flights',
     },
     {
       title: 'Shipments',
       description: 'Find your preferred reliable delivery partner to get your goods to their destination',
       buttonText: 'Book Shipment',
       image: '/parcel.jpg',
-      route: '/parcel', // Define the route for shipments
+      route: '/parcel',
+    },
+    {
+      title: 'Search Past Bookings',
+      description: 'Look for your past bookings and check their status',
+      buttonText: 'Search Bookings',
+      image: '/parcel.jpg',
+      route: '/usertable',
     },
   ];
 
@@ -43,7 +49,7 @@ export default function TravelBooking() {
                 <p>{section.description}</p>
                 <button 
                   className={styles.button} 
-                  onClick={() => router.push(section.route)} // Add onClick event to redirect
+                  onClick={() => router.push(section.route)}
                 >
                   {section.buttonText}
                 </button>

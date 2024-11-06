@@ -31,6 +31,7 @@ const ParcelSuggestions = () => {
   const volume = searchParams.get('volume');
   const isFragile = searchParams.get('isFragile');
   const description = searchParams.get('description');
+  const category = searchParams.get('category');
   const shippingDate = searchParams.get('shippingDate');
   
   const [suggestions, setSuggestions] = useState<ShippingOption[]>([]);
@@ -116,6 +117,7 @@ const ParcelSuggestions = () => {
           volume,
           isFragile,
           description,
+          category,
           shippingDate,
           selectedOption: suggestions.find(s => s.id === id)
         }),

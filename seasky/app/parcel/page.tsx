@@ -23,12 +23,13 @@ const ParcelPage = () => {
   const [volume, setVolume] = useState('');
   const [isFragile, setIsFragile] = useState(false);
   const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
   const [shippingDate, setShippingDate] = useState('');
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/parcel-suggestions?senderStreet=${senderAddress.street}&senderCity=${senderAddress.city}&senderState=${senderAddress.state}&senderCountry=${senderAddress.country}&receiverfName=${receiverAddress.fName}&receiverlName=${receiverAddress.lName}&receiverStreet=${receiverAddress.street}&receiverCity=${receiverAddress.city}&receiverState=${receiverAddress.state}&receiverCountry=${receiverAddress.country}&weight=${weight}&volume=${volume}&isFragile=${isFragile}&shippingDate=${shippingDate}&description=${description}`);
+    router.push(`/parcel-suggestions?senderStreet=${senderAddress.street}&senderCity=${senderAddress.city}&senderState=${senderAddress.state}&senderCountry=${senderAddress.country}&receiverfName=${receiverAddress.fName}&receiverlName=${receiverAddress.lName}&receiverStreet=${receiverAddress.street}&receiverCity=${receiverAddress.city}&receiverState=${receiverAddress.state}&receiverCountry=${receiverAddress.country}&weight=${weight}&volume=${volume}&isFragile=${isFragile}&shippingDate=${shippingDate}&description=${description}&category=${category}`);
   };
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'sender' | 'receiver') => {
@@ -137,6 +138,18 @@ const ParcelPage = () => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label htmlFor="description">Category:</label>
+            <input
+              type="text"
+              id="category"
+              name="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
               required
             />
           </div>

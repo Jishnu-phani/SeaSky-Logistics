@@ -29,10 +29,9 @@ CREATE TABLE Passenger (
 
 DROP TABLE IF EXISTS No_Fly;
 CREATE TABLE No_Fly (
-    Passport_Number CHAR(10),
+    Passport_Number CHAR(12),
     Reason VARCHAR(1000) NOT NULL,
     Date_Added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (Passport_Number) REFERENCES Passenger(Passport_Number)
 );
 
 DROP TABLE IF EXISTS Sender;

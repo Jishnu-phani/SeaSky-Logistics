@@ -1,0 +1,100 @@
+/* TravelLogPage.module.css */
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(5px);
+    color: black; /* ensure text is black */
+}
+
+.background {
+    background-image: url('/Admin_login.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.searchContainer {
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: black;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    color: black;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.statusCell {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.statusSelect {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.table th:nth-last-child(-n+2) {
+    width: 150px;
+}
+
+.backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    z-index: 2;
+  }

@@ -11,6 +11,7 @@ export async function POST(req) {
             volume,
             isFragile,
             description,
+            category,
             shippingDate,
             selectedOption
         } = await req.json();
@@ -65,7 +66,7 @@ export async function POST(req) {
                 weight,
                 volume,
                 'Unverified',
-                selectedOption.serviceType,
+                category,
                 isFragile === 'yes' ? 'Yes' : 'No',
                 description || null
             ]
@@ -84,7 +85,7 @@ export async function POST(req) {
             'INSERT INTO travel_log (Log_ID, Travel_Status, Origin, Destination, Date, Mode_of_Transport, ETA, Actual_end_time, Start_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [
                 logId,
-                'In Transit',
+                'Yet to be verified',
                 `${senderAddress.city}, ${senderAddress.country}`,
                 `${receiverDetails.city}, ${receiverDetails.country}`,
                 formattedShippingDate,

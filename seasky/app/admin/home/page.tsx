@@ -26,7 +26,7 @@ export default function AdminHome() {
         </button>
         <button 
           className={styles.button}
-          onClick={() => handleNavigation('/admin/shipment-status')}
+          onClick={() => handleNavigation('/admin/shipment-status-management')}
         >
           Shipment Status Management
         </button>
