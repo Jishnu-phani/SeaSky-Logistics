@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import styles from './PastBookings.module.css';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface Booking {
   bookingId: string;
@@ -25,6 +27,7 @@ const PastBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [shipments, setShipments] = useState<Shipment[]>([]);
   const [error, setError] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -83,6 +86,17 @@ const PastBookings = () => {
 
   return (
     <div className={styles.container}>
+      <div 
+        className={styles.backButton}
+        onClick={() => router.push('/home')}
+        >
+            <Image
+                src="/back-arrow.svg"
+                alt="Back"
+                width={20}
+                height={20}
+            />
+      </div>
       <h1 className={styles.title}>Past Bookings</h1>
       {error && <p className={styles.error}>{error}</p>}
       
