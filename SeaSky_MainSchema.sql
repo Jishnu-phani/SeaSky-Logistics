@@ -81,9 +81,7 @@ CREATE TABLE Regulation (
     Regulation_ID CHAR(10) PRIMARY KEY,
     Country VARCHAR(100) NOT NULL,
     Details VARCHAR(1000) NOT NULL,
-    Tax_Rate DECIMAL(65,4) NOT NULL,
-    Package_ID CHAR(10),
-    FOREIGN KEY (Package_ID) REFERENCES Goods(Package_ID)
+    Tax_Rate DECIMAL(65,4) NOT NULL
 );
 
 DROP TABLE IF EXISTS Shipment;
@@ -129,4 +127,11 @@ CREATE TABLE Ships (
     FOREIGN KEY (Package_ID) REFERENCES Goods(Package_ID),
     FOREIGN KEY (Log_ID) REFERENCES Travel_Log(Log_ID),
     FOREIGN KEY (Receiver_ID) REFERENCES Receiver(Receiver_ID)
+);
+
+DROP TABLE IF EXISTS Shipment_suggestions;
+CREATE TABLE Shipment_suggestions (
+	Carrier CHAR(50),
+    Service_Type CHAR(50),
+    Price DECIMAL(6,2)
 );

@@ -63,7 +63,20 @@ const ParcelSuggestions = () => {
   const getRandomServiceType = () => serviceTypes[Math.floor(Math.random() * serviceTypes.length)];
   const getRandomDeliveryDays = () => Math.floor(Math.random() * 7) + 1;
 
-  useEffect(() => {
+  useEffect (() => {
+
+    const fetchMinPrice = async () => {
+      try {
+        const response = await fetch('/api/minimum', {method: 'GET'});
+        const data = await response.json();
+        console.log(data);
+
+      } catch (error) {
+        console.error("Error fetching minimum price:", error);
+      }
+    }
+    
+    fetchMinPrice();
     const initialSuggestions: ShippingOption[] = [
       {
         id: 1,
@@ -88,6 +101,17 @@ const ParcelSuggestions = () => {
       },
     ];
     setSuggestions(initialSuggestions);
+
+    fetch('/api/shipSuggestion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ suggestions: initialSuggestions.map(({ carrier, serviceType, price}) => ({ carrier, serviceType, price })) })
+    })
+    .then (response => response.json())
+    .then (data => console.log(data))
+    .catch (error => console.error("Error fetching shipping suggestions:", error));
   }, []);
 
   const handleSelect = async (id: number) => {
@@ -166,6 +190,8 @@ const ParcelSuggestions = () => {
         ))}
       </div>
     </div>
+
+
   );
 };
 

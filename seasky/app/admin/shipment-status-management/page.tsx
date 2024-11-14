@@ -61,17 +61,17 @@ const TravelLogPage: React.FC = () => {
         }
     };
 
-    const handleRegulationStatusChange = async (packageId: string, newStatus: string) => {
+    const handleRegulationStatusChange = async (logId: string, newStatus: string) => {
         try {
-            await axios.put(`/api/goods/${packageId}`, { Regulation_Status: newStatus });
+            await axios.put(`/api/goods/${logId}`, { Regulation_Status: newStatus });
         } catch (error) {
             console.error("Failed to update regulation status", error);
         }
     };
 
-    const handleVerify = async (logId: string, packageId: string) => {
+    const handleVerify = async (logId: string) => {
         await handleStatusChange(logId, "Waiting to be picked up");
-        await handleRegulationStatusChange(packageId, "Verified");
+        await handleRegulationStatusChange(logId, "Verified");
     };
 
     return (
@@ -173,7 +173,7 @@ const TravelLogPage: React.FC = () => {
                             <td>{log.Category}</td>
                             <td>
                             <button
-    onClick={() => handleVerify(log.Log_ID, log.Package_ID)}
+    onClick={() => handleVerify(log.Log_ID)}
     className={styles.verifyButton}
 >
     Verify

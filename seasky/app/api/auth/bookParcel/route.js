@@ -127,6 +127,10 @@ export async function POST(req) {
             ]
         );
 
+        await db.query(
+            'TRUNCATE TABLE shipment_suggestions'
+        )
+
         return new Response(JSON.stringify({
             message: 'Shipment booked successfully',
             trackingNumber: trackingNumber,

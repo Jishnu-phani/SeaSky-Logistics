@@ -3,10 +3,10 @@ import pool from '@/app/api/auth/db';
 
 export async function PUT(request, { params }) {
   try {
-    const packageId = params.packageId;
+    const logId = params.logId;
     const { Regulation_Status } = await request.json();
 
-    if (!packageId || !Regulation_Status) {
+    if (!logId || !Regulation_Status) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -14,8 +14,8 @@ export async function PUT(request, { params }) {
     }
 
     await pool.query(
-      `UPDATE goods SET Regulation_Status = ? WHERE Package_ID = ?`,
-      [Regulation_Status, packageId]
+      `UPDATE goods SET Regulation_Status = ? WHERE Package_ID = (SELECT Package_ID from ships s where Log_ID=?) `,
+      [Regulation_Status, logId]
     );
 
     return NextResponse.json(
